@@ -27,8 +27,8 @@ func NewCommitCommandHandler(
 
 func (h CommitCommandHandler) Handle(cmd *cobra.Command, args []string) error {
 	message := h.inputPrompt.GetInput("Commit message:", validators.NonEmpty)
-	body := h.inputPrompt.GetInput("Commit body:", validators.NonEmpty)
-	issueReference := h.inputPrompt.GetInput("Issue ref:", validators.NonEmpty)
+	body := h.inputPrompt.GetInput("Commit body", validators.NoValidation)
+	issueReference := h.inputPrompt.GetInput("Issue ref:", validators.NoValidation)
 	changeType := h.inputPrompt.GetSelect("Change Type:", models.ChangeTypeValuesAsString())
 
 	changeTypeEnum, err := models.ChangeTypeFromString(changeType)
